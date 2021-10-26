@@ -1,6 +1,8 @@
 from pydub import AudioSegment
 from os import listdir
 from os import path
+import mutagen
+
 import os
 import threading
 import tkinter as tk
@@ -12,6 +14,29 @@ from subprocess import Popen, PIPE
 from tkinter import filedialog, dialog, scrolledtext, Canvas, END
 from tkinter.messagebox import askyesno
 from time import sleep, time
+
+def writemetedata(infilepath):
+    tag = TinyTag.get(infilepath)
+    tag.album         # album as string
+    tag.albumartist   # album artist as string
+    tag.artist        # artist name as string
+    tag.audio_offset  # number of bytes before audio data begins
+    tag.bitrate       # bitrate in kBits/s
+    tag.comment       # file comment as string
+    tag.composer      # composer as string 
+    tag.disc          # disc number
+    tag.disc_total    # the total number of discs
+    tag.duration      # duration of the song in seconds
+    tag.filesize      # file size in bytes
+    tag.genre         # genre as string
+    tag.samplerate    # samples per second
+    tag.title         # title of the song
+    tag.track         # track number as string
+    tag.track_total   # total number of tracks as string
+    tag.year          # year or data as string
+
+    # For non-common fields and fields specific to single file formats use extra
+    tag.extra         # a dict of additional data
 
 def initgui():
     # global window
@@ -130,13 +155,13 @@ def initgui():
     l1.grid(row=1, column = 1, sticky=tk.W)
     starttime = tk.IntVar()
     starttime.set(0)
-    enstarttime = tk.Entry(wmkframe, textvariable = starttime, width=5, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black')
+    enstarttime = tk.Entry(wmkframe, textvariable = starttime, width=5, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black', bg='white')
     enstarttime.grid(row=1, column = 2, sticky=tk.EW)
     l2 = tk.Label(wmkframe, text="秒   水印间隔: ", font=('TkDefaultFont',UI_FONT_SIZE_Label), fg='black')
     l2.grid(row=1, column = 3)
     pausetime = tk.IntVar()
     pausetime.set(30)
-    enpausetime = tk.Entry(wmkframe, textvariable = pausetime, width=5, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black')
+    enpausetime = tk.Entry(wmkframe, textvariable = pausetime, width=5, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black', bg='white')
     enpausetime.grid(row=1, column = 4, sticky=tk.EW)
     l3 = tk.Label(wmkframe, text="秒", font=('TkDefaultFont',UI_FONT_SIZE_Label), fg='black')
     l3.grid(row=1, column = 5, sticky=tk.W)
@@ -145,7 +170,7 @@ def initgui():
     l3.grid(row=2, column = 1, sticky=tk.W)
     wmkvol = tk.IntVar()
     wmkvol.set(6)
-    enwmkvol = tk.Entry(wmkframe, textvariable = wmkvol, width=5, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black')
+    enwmkvol = tk.Entry(wmkframe, textvariable = wmkvol, width=5, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black', bg='white')
     enwmkvol.grid(row=2, column = 2, sticky=tk.EW)
     l4 = tk.Label(wmkframe, text="dB", font=('TkDefaultFont',UI_FONT_SIZE_Label), fg='black')
     l4.grid(row=2, column = 3, sticky=tk.W)
@@ -177,7 +202,7 @@ def initgui():
     l8.grid(row=1, column = 1, sticky=tk.W)
     outfileprefx = tk.StringVar()
     outfileprefx.set('DEMO')
-    enoutfileprefx = tk.Entry(outputframe, textvariable = outfileprefx, width=20, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black')
+    enoutfileprefx = tk.Entry(outputframe, textvariable = outfileprefx, width=20, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black', bg='white')
     enoutfileprefx.grid(row=1, column = 2, columnspan=5, sticky=tk.W)
     # set metadata
     
