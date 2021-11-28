@@ -169,9 +169,8 @@ def initgui():
     # 构建图形界面
     window = tk.Tk()
     #设置程序缩放
-    # window.tk.call('tk', 'scaling', 2.1)
     window.protocol('WM_DELETE_WINDOW', closewindow)
-    window.title('音频DEMO处理工具\t\tv1.0 by Hanyuan6')  # 标题
+    window.title('音频DEMO处理工具  v1.0\t\tby Hanyuan6')  # 标题
     window.geometry(UI_WINDOW_SIZE)  # 窗口尺寸
     window.rowconfigure(1, weight=1)
     window.columnconfigure(0, weight=1)
@@ -269,7 +268,7 @@ def initgui():
 
     # output text
     outframe = tk.LabelFrame(window, text = "运行日志", fg='black', font=('TkDefaultFont',UI_FONT_SIZE_LabelFrame))
-    text1 = scrolledtext.ScrolledText(outframe, width=60, height=18, font=('TkDefaultFont',UI_FONT_SIZE_ScrolledText), fg='black', bg='orange', state='disabled')
+    text1 = scrolledtext.ScrolledText(outframe, width=60, height=16, font=('TkDefaultFont',UI_FONT_SIZE_ScrolledText), fg='black', bg='orange', state='disabled')
     text1.pack()
     outframe.grid(row=5, sticky=tk.W)
 
@@ -308,7 +307,7 @@ if __name__ == "__main__":
     # 根据不同平台设置UI参数
     if system().lower() == 'darwin':
         SYSARCH = 'mac'
-        UI_WINDOW_SIZE = '600x700'
+        UI_WINDOW_SIZE = '600x800'
         UI_FONT_SIZE_LabelFrame = 14
         UI_FONT_SIZE_Label = 16
         UI_FONT_SIZE_Entry = 16
