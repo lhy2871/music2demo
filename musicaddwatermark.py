@@ -1,6 +1,4 @@
 from pydub import AudioSegment
-from os import listdir
-from os import path
 import os
 import threading
 import tkinter as tk
@@ -46,6 +44,29 @@ class Musicdir:
             self.wmk = AudioSegment.from_mp3(self.wmkpath)
         elif self.wmkpath.endswith(('wav','WAV')):
             self.wmk = AudioSegment.from_wav(self.wmkpath)
+
+def writemetedata(infilepath):
+    tag = TinyTag.get(infilepath)
+    tag.album         # album as string
+    tag.albumartist   # album artist as string
+    tag.artist        # artist name as string
+    tag.audio_offset  # number of bytes before audio data begins
+    tag.bitrate       # bitrate in kBits/s
+    tag.comment       # file comment as string
+    tag.composer      # composer as string 
+    tag.disc          # disc number
+    tag.disc_total    # the total number of discs
+    tag.duration      # duration of the song in seconds
+    tag.filesize      # file size in bytes
+    tag.genre         # genre as string
+    tag.samplerate    # samples per second
+    tag.title         # title of the song
+    tag.track         # track number as string
+    tag.track_total   # total number of tracks as string
+    tag.year          # year or data as string
+
+    # For non-common fields and fields specific to single file formats use extra
+    tag.extra         # a dict of additional data
 
 def initgui():
 
@@ -255,7 +276,7 @@ def initgui():
     l8.grid(row=1, column = 1, sticky=tk.W)
     outfileprefx = tk.StringVar()
     outfileprefx.set('DEMO')
-    enoutfileprefx = tk.Entry(outputframe, textvariable = outfileprefx, width=20, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black')
+    enoutfileprefx = tk.Entry(outputframe, textvariable = outfileprefx, width=20, font=('TkDefaultFont',UI_FONT_SIZE_Entry), fg='black', bg='white')
     enoutfileprefx.grid(row=1, column = 2, columnspan=5, sticky=tk.W)
     # set metadata
     
