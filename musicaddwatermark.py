@@ -317,7 +317,7 @@ if __name__ == "__main__":
         UI_FONT_SIZE_ScrolledText = 20
     elif system().lower() == 'windows':
         SYSARCH = 'win'
-        UI_WINDOW_SIZE = '600x750'
+        UI_WINDOW_SIZE = '600x700'
         UI_FONT_SIZE_LabelFrame = 10
         UI_FONT_SIZE_Label = 12
         UI_FONT_SIZE_Entry = 12
