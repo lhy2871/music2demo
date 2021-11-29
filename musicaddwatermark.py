@@ -21,6 +21,7 @@ class Musicdir:
         self.convrted = 0
     
     def readmusicdir(self, wav=1, mp3=1):
+        self.music_num = 0
         if wav == 1 and mp3 == 1:
             for files in os.listdir(self.inpath):
                 if files.endswith(('.wav','.mp3','.WAV','.MP3')):
@@ -52,7 +53,7 @@ def initgui():
         if ans:
             update_text(text1, "\n用户退出")
             if musicdir.convrted == 1:
-                with open(os.path.join(musicdir.outpath,os.path.basename(musicdir.inpath)+'_addwmk_log.txt'), 'a') as f:
+                with open(os.path.join(musicdir.inpath, os.path.basename(musicdir.inpath)+'_addwmk_log.txt'), 'a') as f:
                     f.write(strftime("%Y-%m-%d %H:%M:%S", localtime())+'\n\n')
                     f.write(text1.get(1.0,END) + '\n')
                     f.close()
