@@ -305,6 +305,7 @@ def update_text(wichtext, input_text):
 
 
 if __name__ == "__main__":
+    print("正在启动，请稍候...")
     # 根据不同平台设置UI参数
     if system().lower() == 'darwin':
         SYSARCH = 'mac'
