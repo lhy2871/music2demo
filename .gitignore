@@ -1,2 +1,7 @@
 WaterAudio-master/
 __pycache__/
+build/
+dist/
+setup.py
+.DS_Store
+
